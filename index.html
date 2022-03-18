@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Youtube Downloader</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600&display=swap');
+            * {
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                user-select: none;
+                outline: none;
+                border: none;
+            }
+            body {
+                background: #f1f3ff;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 600;
+            }
+            body::-webkit-scrollbar {
+                display: none;
+            }
+            .container {
+                max-width: 640px;
+                margin: 0 auto;
+                margin-top: 50px;
+                display: flex;
+                flex-direction: column;
+                transition: all 0.4s ease-in-out;
+            }
+            form {
+                max-width: 640px;
+                display: flex;
+                justify-content: space-between;
+                transition: all 0.4s ease-in-out;
+            }
+            form input {
+                padding: 6px 12px;
+                width: calc(100% - 40px);
+                height: 40px;
+                border-radius: 12px 0 0 12px;
+                font-size: 20px;
+                box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+                transition: all 0.4s ease-in-out;
+                font-family: 'Nunito', sans-serif;
+                font-weight: 600;
+                letter-spacing: 1px;
+                color: #353535;
+                background: #ffffff;
+            }
+            form button {
+                width: 40px;
+                height: 40px;
+                background: #252525;
+                border-radius: 0 8px 8px 0;
+                box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+                padding: 4px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                cursor: pointer;
+            }
+            form button svg {
+                width: 24px;
+                height: 24px;
+                fill: #ffffff;
+                transition: all 0.4s ease-in-out;
+            }
+            .cards {
+                margin: 40px 0px;
+                max-width: 640px;
+                display: flex;
+                flex-direction: column;
+            }
+            .cards .card {
+                margin-bottom: 20px;
+                width: 100%;
+                border-radius: 12px;
+                background: #ffffff;
+                display: flex;
+                box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+            }
+            .cards .card:nth-child(2n){
+                flex-direction: row-reverse;
+            }
+            .card:nth-child(2n) .img, 
+            .card:nth-child(2n) .img img {
+                border-radius: 0 12px 12px 0;
+            }
+            .card .img {
+                min-height: 120px;
+                width: 60%;
+                border-radius: 12px 0 0 12px;
+            }
+            .card .img img {
+                width: 100%;
+                height: 100%;
+                border-radius: 12px 0 0 12px;
+            }
+            .card .txt {
+                width: 40%;
+                align-self: center;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            .card .txt .tit {
+                font-size: 20px;
+                font-weight: 600;
+                margin-bottom: 20px;
+            }
+            .card .txt .btn {
+                padding: 6px 12px;
+                border-radius: 8px;
+                background: #00b894;
+                cursor: pointer;
+            }
+            .card .txt .btn a {
+                text-decoration: none;
+                color: #ffffff;
+            }
+            .cards .incorrect{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 120px;
+                font-size: 24px;
+                background: #ffd7e5;
+                color: #f33376;
+                border-radius: 12px;
+                box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.3);
+            }
+            .icon {
+                display: none;
+            }
+            @media (max-width: 700px) {
+                .container {
+                    margin: 30px 20px;
+                }
+                form {
+                    margin: 0px 15px;
+                }
+                .cards {
+                    margin: 30px 15px;
+                }
+            }
+            @media (max-width: 500px) {
+                .container {
+                    margin: 30px 16px;
+                }
+                form {
+                    margin: 0px 5px;
+                }
+                .cards {
+                    margin: 20px 5px;
+                }
+                .card .img {
+                    width: 50%;
+                }
+                .card .txt {
+                    width: 50%;
+                }
+                .card .txt .tit {
+                    font-size: 16px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <form class="form">
+                <input class="url" type="text" />
+                <button class="button" type="submit">
+                    <svg viewBox="0 0 512 512">
+                        <path
+                            d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+                        />
+                    </svg>
+                </button>
+            </form>
+            <div class="cards"></div>
+        </div>
+
+        <script>
+            let form = document.querySelector('.form');
+            form.addEventListener('submit', getYoutubeId);
+            
+            function getYoutubeId(e) {
+                let url = document.querySelector('.url').value;
+                let cards = document.querySelector('.cards');
+
+                let regExp = /^.*((youtu.be\/)|(v\/)|(\/u\/\w\/)|(embed\/)|(watch\?))\??v?=?([^#\&\?]*).*/;
+                let match = url.match(regExp);
+
+                if (match && match[7].length == 11){
+                    let id = match[7];
+                
+                    let data = [
+                        {
+                            tlt: 'HD (1280x720)',
+                            url: `https://img.youtube.com/vi/${id}/maxresdefault.jpg`
+                        },
+                        {
+                            tlt: 'SD (640x480)',
+                            url: `https://img.youtube.com/vi/${id}/sddefault.jpg`
+                        },
+                        {
+                            tlt: 'HQ (480x360)',
+                            url: `https://i3.ytimg.com/vi/${id}/hqdefault.jpg`
+                        },
+                        {
+                            tlt: 'MQ (320x180)',
+                            url: `https://img.youtube.com/vi/${id}/mqdefault.jpg`
+                        },
+                        {
+                            tlt: 'DF (120x90)',
+                            url: `https://img.youtube.com/vi/${id}/default.jpg`
+                        }
+                    ]
+
+                    cards.innerHTML = '';
+                    for (let i = 0; i < data.length; i++) {
+                        cards.innerHTML += `
+                            <div class="card">
+                                <div class="img">
+                                    <img src="${data[i].url}" alt="Thumbnail"/>
+                                </div>
+                                <div class="txt">
+                                    <div class="tit">${data[i].tlt}</div>
+                                    <div class="btn">
+                                        <a href="${data[i].url}" download='Thumbnail.jpg'>Download link</a>       
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                    } 
+
+                }
+                else{
+                    cards.innerHTML = '';
+                    cards.innerHTML = `
+                        <div class="incorrect">Url Is Incorrect</div>
+                    `
+                }
+
+                e.preventDefault();
+            }
+            
+        </script>
+    </body>
+</html>
